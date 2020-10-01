@@ -1,0 +1,10 @@
+# Python virtualenvs
+.venv/
+.python-version
+
+# Editors' files
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store/
