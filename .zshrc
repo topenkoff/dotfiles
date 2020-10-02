@@ -7,15 +7,33 @@ ZSH_THEME="robbyrussell"
 plugins=(git docker docker-compose kubectl)
 source $ZSH/oh-my-zsh.sh
 
-export GPG_TTY=$(tty)
-# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-# poetry
-export PATH="$HOME/.cargo/bin:$PATH"
-# cargo
-export PATH="$HOME/.poetry/bin:$PATH"
-# golang
-export GOPATH="$HOME/.go"
-export PATH="$GOPATH/bin:$PATH"
+### pyenv
+if [[ -d "$HOME/.pyenv" ]]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+fi
+###
 
-alias ll='ls -laGh'
+### poetry
+if [[ -d "$HOME/.poetry" ]]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
+fi
+###
+
+### cargo
+if [[ -d "$HOME/.cargo" ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+###
+
+### golang
+if [[ ! -e "$HOME/.go" ]]; then
+    mkdir "$HOME/.go"
+elif [[ -d "$HOME/.go" ]]; then
+    export GOPATH="$HOME/.go"
+    if [[ -d "$HOME/.go/bin" ]]; then
+        export PATH="$GOPATH/bin:$PATH"
+    fi
+fi
+###
+
+alias ll="ls -laGh"
