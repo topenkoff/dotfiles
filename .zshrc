@@ -7,7 +7,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git docker docker-compose kubectl)
 source $ZSH/oh-my-zsh.sh
 
-export GPG_TTY=`tty`
+export GPG_TTY=$(tty)
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 # poetry

@@ -8,3 +8,7 @@
 
 # MacOS
 .DS_Store/
+
+# Develop files
+*develop.*
+*local.*
