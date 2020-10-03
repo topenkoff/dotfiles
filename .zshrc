@@ -10,6 +10,7 @@ source $ZSH/oh-my-zsh.sh
 ### pyenv
 if [[ -d "$HOME/.pyenv" ]]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
 fi
 ###
 
