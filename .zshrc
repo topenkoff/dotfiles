@@ -17,6 +17,7 @@ fi
 ### poetry
 if [[ -d "$HOME/.poetry" ]]; then
     export PATH="$HOME/.poetry/bin:$PATH"
+    export POETRY_VIRTUALENVS_PATH="$HOME/.poetry/virtualenvs"
 fi
 ###
 
