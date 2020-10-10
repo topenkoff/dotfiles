@@ -38,4 +38,52 @@ elif [[ -d "$HOME/.go" ]]; then
 fi
 ###
 
+### postgres
+if [[ $(which psql) ]]; then 
+    export PATH="$(which psql | sed 's|\(.*\)/.*|\1|'):$PATH"
+fi
+
+# For run this function you need export env variable 
+# with type associative array.
+
+# typeset -A DEV_SLAVE
+# DEV_SLAVE[host]=host
+# DEV_SLAVE[port]=port
+# DEV_SLAVE[dbname]=dbname
+# DEV_SLAVE[username]=username
+# DEV_SLAVE[password]=password
+#
+# Where name consists of db enviroment and db replica or only db enviroment.
+# Or include file with credentials with structure describe above, 
+# for example:
+#
+# source ${HOME}/.credentials
+
+pgcli () {
+    local db="$1:u"
+    local replica="$2:u"
+
+    if [[ ! -z "$2" ]]; then
+        credentials_template="$db"_"$replica"
+    else
+        credentials_template="$1:u"
+    fi
+
+    typeset -A credentials
+    set -A credentials ${(kv)${(P)credentials_template}}
+
+    if [[ -z "$credentials" ]]; then
+        echo "Database connection doesn't exists"
+        return 
+    fi
+
+    PGPASSWORD=$credentials[password] psql \
+    --host=$credentials[host] \
+    --port=$credentials[port] \
+    --username=$credentials[username] \
+    --dbname=$credentials[dbname]
+}
+###
+
+### aliases
 alias ll="ls -laGh"
