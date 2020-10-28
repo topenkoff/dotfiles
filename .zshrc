@@ -43,6 +43,12 @@ if [[ $(which psql) ]]; then
     export PATH="$(which psql | sed 's|\(.*\)/.*|\1|'):$PATH"
 fi
 
+### homebrew
+if [[ $(which brew) ]]; then
+    export HOMEBREW_NO_AUTO_UPDATE=1
+fi
+###
+
 # For run this function you need export env variable 
 # with type associative array.
 
