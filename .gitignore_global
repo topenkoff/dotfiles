@@ -12,3 +12,6 @@
 # Develop files
 *develop.*
 *local.*
+
+# Python
+__pycache__/
