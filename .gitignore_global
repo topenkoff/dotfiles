@@ -1,8 +1,9 @@
-# Python virtualenvs
+# Python
 .venv/
 .python-version
+__pycache__/
 
-# Editors' files
+# Editor's files
 .vscode/
 .idea/
 
@@ -12,6 +13,6 @@
 # Develop files
 *develop.*
 *local.*
-
-# Python
-__pycache__/
+coverage/
+*.log
+logs/
