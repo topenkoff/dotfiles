@@ -51,6 +51,7 @@ create_symlink () {
 }
 
 main () {
+    create_gitconfig;
     for file in $(dotfiles); do
         create_symlink "${file#./}"
     done
