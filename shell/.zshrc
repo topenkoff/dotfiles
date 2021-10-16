@@ -54,7 +54,7 @@ fi
 
 export GPG_TTY=$(tty)
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-[ -f $HOME/.func_tools.sh ] && source $HOME/.functools.sh
+[ -f $HOME/.func_tools.sh ] && source $HOME/.func_tools.sh
 
 ### aliases
 alias ll="ls -laGh"
