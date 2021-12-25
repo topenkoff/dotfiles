@@ -1,19 +1,35 @@
-require'nvim-tree'.setup {
-  open_on_setup = true,
+local nvim_tree = require'nvim-tree'
+
+nvim_tree.setup{
+  open_on_tab         = true,
+  open_on_setup       = true,
+  auto_close          = true,
   view = {
-    width = 30,
+    width = 35,
     side = 'left',
-    auto_resize = true,  
+    auto_resize = true,
   },
   filters = {
     custom = { 
       '.git', 
       'node_modules', 
-      '.nvimlog', 
-      '.idea', 
+      '.cache',
+      '.idea',
+      '.DS_Store',
+      '.venv',
       '__pycache__', 
-      '.venv' 
+      '.mypy_cache',
+      '.pytest_cache',
+      'htmlcov',
+      'reports',
+      '.hypothesis',
+      '.coverage',
+      'coverage.xml',
     }
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 100,
   }
 }
-

@@ -13,7 +13,7 @@ nnoremap <silent> <leader>f  <cmd>lua vim.lsp.buf.formatting()<Cr>
 nnoremap <leader>[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <leader>d <cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>
-nnoremap <silent>P <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent>P <cmd>lua vim.diagnostic.open_float()<CR>
 
 " Inline type hints
 nnoremap <Leader>t :lua require'lsp_extensions'.inlay_hints()<CR>
