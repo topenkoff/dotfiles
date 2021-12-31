@@ -28,12 +28,13 @@ function! PackagerInit() abort
   call packager#add('lotabout/skim')                                               " Rust alternative to fzf
   call packager#add('lotabout/skim.vim')                                           " Skim vim integration
   call packager#add('ekalinin/Dockerfile.vim')                                     " Dockerfile helper
-  call packager#add('hrsh7th/cmp-vsnip')                                           " LSP snippets
-  call packager#add('hrsh7th/cmp-nvim-lsp')                                        " nvim-cmp source for neovim builtin LSP client
-  call packager#add('hrsh7th/cmp-buffer')                                          " nvim-cmp source for buffer words
   call packager#add('hrsh7th/nvim-cmp')                                            " LSP completion
   call packager#add('hrsh7th/vim-vsnip')                                           " Snippet plugin for LSP
   call packager#add('hrsh7th/vim-vsnip-integ')                                     " vim-vsnip integrations to other plugins
+  call packager#add('hrsh7th/cmp-vsnip')                                           " LSP snippets
+  call packager#add('hrsh7th/cmp-nvim-lsp')                                        " nvim-cmp source for neovim builtin LSP client
+  call packager#add('hrsh7th/cmp-buffer')                                          " nvim-cmp source for buffer words
+  call packager#add('saecki/crates.nvim', {'requires': 'nvim-lua/plenary.nvim'})   " Crates.io helper
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()
@@ -48,4 +49,5 @@ augroup packager_filetype
   " autocmd!
   " autocmd FileType javascript packadd vim-js-file-import
   " autocmd FileType go packadd vim-go
+  " autocmd FileType toml lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }
 augroup END

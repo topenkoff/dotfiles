@@ -154,13 +154,20 @@ key_bindings:
   - { key: Key8,     mods: Command,             chars: "\x06\x38"    }
   - { key: Key9,     mods: Command,             chars: "\x06\x39"    }
   - { key: Key0,     mods: Command,             chars: "\x06\x30"    }
+  - { key: Minus,    mods: Command,             chars: "\x06\x2d"    }
+  - { key: Equals,   mods: Command,             chars: "\x06\x3d"    }
 # Select pane
   - { key: H,        mods: Command,             chars: "\x06\x68"    }
   - { key: J,        mods: Command,             chars: "\x06\x6a"    }
   - { key: K,        mods: Command,             chars: "\x06\x6b"    }
   - { key: L,        mods: Command,             chars: "\x06\x6c"    }
 # Resize pane
-  - { key: H,        mods: Shift|Command,       chars: "\x06\x48"    }
-  - { key: J,        mods: Shift|Command,       chars: "\x06\x4a"    }
-  - { key: K,        mods: Shift|Command,       chars: "\x06\x4b"    }
-  - { key: L,        mods: Shift|Command,       chars: "\x06\x4c"    }
+  - { key: H,        mods: Alt|Command,         chars: "\x06\x48"    }
+  - { key: J,        mods: Alt|Command,         chars: "\x06\x4a"    }
+  - { key: K,        mods: Alt|Command,         chars: "\x06\x4b"    }
+  - { key: L,        mods: Alt|Command,         chars: "\x06\x4c"    }
+
+  - { key: J,        mods: Shift|Command,       chars: "\x1b[B"      }
+  - { key: K,        mods: Shift|Command,       chars: "\x1b[A"      }
+  - { key: LBracket, mods: Command,             chars: "\x06\x5b"    }
+  - { key: 3,        mods: Shift|Alt,           chars: "\xe2\x80\xb9"}

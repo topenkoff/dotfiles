@@ -19,14 +19,16 @@ let g:myLangList = ['nospell', 'en_us,ru_yo']
 set cursorline
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
 " Clipboard
 set clipboard+=unnamedplus
 
-" Tab == 4 spaces after enter
-set smartindent
-set tabstop=2 
-set shiftwidth=2 
+set tabstop=4
+set shiftwidth=4
+set smarttab
 set expandtab
-set lazyredraw
-set synmaxcol=128
-syntax sync minlines=256
+set smartindent
+" set lazyredraw
+" set synmaxcol=128
+" syntax sync minlines=256

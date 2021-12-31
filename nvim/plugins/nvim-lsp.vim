@@ -10,9 +10,7 @@ nnoremap <silent> <leader>r  <cmd>lua vim.lsp.buf.rename()<Cr>
 nnoremap <silent> <leader>f  <cmd>lua vim.lsp.buf.formatting()<Cr>
 
 " Diagnostic
-nnoremap <leader>[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <leader>] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <leader>d <cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>
+nnoremap <leader>d <cmd>lua vim.lsp.diagnostic.setloclist()<Cr>
 nnoremap <silent>P <cmd>lua vim.diagnostic.open_float()<CR>
 
 " Inline type hints

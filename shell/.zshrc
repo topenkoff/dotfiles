@@ -1,3 +1,4 @@
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 LOCAL_BIN=/usr/local/bin
 
 plugins=(
@@ -8,53 +9,36 @@ plugins=(
     cargo
 )
 
-### starship
-if [[ -d "$LOCAL_BIN/starship" ]]; then
-    eval "$(starship init zsh)"
-fi
+### shell
+# prompt
+[ -f "$LOCAL_BIN/starship" ] && eval "$(starship init zsh)"
 
-### pyenv
-if [[ -d "$HOME/.pyenv" ]]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
-fi
-
-### poetry
-if [[ -d "$HOME/.poetry" ]]; then
-    export PATH="$HOME/.poetry/bin:$PATH"
-    export POETRY_VIRTUALENVS_IN_PROJECT=true
-fi
-
-### cargo
-if [[ -d "$HOME/.cargo" ]]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-### golang
-if [[ ! -e "$HOME/.go" ]]; then
-    mkdir "$HOME/.go"
-fi
-
-if [[ -d "$HOME/.go" ]]; then
-    export GOPATH="$HOME/.go"
-    if [[ -d "$HOME/.go/bin" ]]; then
-        export PATH="$GOPATH/bin:$PATH"
-    fi
-fi
-
-### homebrew
-if [[ -d "$LOCAL_BIN/brew" ]]; then
-    export HOMEBREW_NO_AUTO_UPDATE=1
-fi
-
-### k8s
-if [[ -d "$LOCAL_BIN/kubectl" ]]; then
-    export KUBECONFIG="$HOME/.kube/kubeconfig"
-fi
-
-export GPG_TTY=$(tty)
+# tools
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 [ -f $HOME/.func_tools.sh ] && source $HOME/.func_tools.sh
 
-### aliases
+# aliases
 alias ll="ls -laGh"
+
+### dev
+# python
+[ -d "$HOME/.pyenv" ] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init --path)"
+[ -d "$HOME/.poetry" ] && export PATH="$HOME/.poetry/bin:$PATH" && export POETRY_VIRTUALENVS_IN_PROJECT=true
+
+# rust
+[ -d "$HOME/.cargo" ] && export PATH="$HOME/.cargo/bin:$PATH"
+
+# golang
+[ -d "$HOME/.go" ] && export GOPATH="$HOME/.go"
+[ -d "$HOME/.go/bin" ] && export PATH="$GOPATH/bin:$PATH"
+
+# k8s
+[ -d "$LOCAL_BIN/kubectl" ] && export KUBECONFIG="$HOME/.kube/kubeconfig"
+
+# brew
+[ -f "$LOCAL_BIN/brew" ] && export HOMEBREW_NO_AUTO_UPDATE=1
+
+# gpg
+export GPG_TTY=$(tty)
+
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"

@@ -36,6 +36,12 @@ local kind_icons = {
 }
 
 cmp.setup({
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = "crates" },
+    { name = 'buffer' },
+  },
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
@@ -43,7 +49,7 @@ cmp.setup({
   },
   formatting = {
     format = function(entry, vim_item)
-      vim_item.kind = string.format('%s  %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.kind = string.format('%s  %s', kind_icons[vim_item.kind], vim_item.kind)
       vim_item.menu = ({
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
@@ -70,108 +76,105 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
   },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-  }, {
-    { name = 'buffer' },
-  }),
 })
 
 nvim_lsp.rust_analyzer.setup{
-    capabilities = capabilities,
-    settings = {
-        ['rust-analyzer'] = {
-            procMacro = {
-                enable = true
-            },
-            cargo = {
-                allFeatures = true,
-		            loadOutDirsFromCheck = true,
-            },
-        },
-    }
+  capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      procMacro = {
+        enable = true
+      },
+      cargo = {
+        allFeatures = true,
+        loadOutDirsFromCheck = true,
+      },
+    },
+  }
 }
 
 nvim_lsp.gopls.setup{
-    capabilities = capabilities,
-    cmd = {"gopls", "serve"},
-    filetypes = { "go", "gomod" },
-    settings = {
-        gopls = {
-            analyses = {
-               unusedparams = true,
-            },
-            staticcheck = true,
-        },
+  capabilities = capabilities,
+  cmd = {"gopls", "serve"},
+  filetypes = { "go", "gomod" },
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
     },
-    root_dir = function(fname)
-        local nvim_lsp = require'lspconfig';
-		      local filename = nvim_lsp.util.path.is_absolute(fname) and fname
-                or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
-		      local root_pattern = nvim_lsp.util.root_pattern(
-            'go.mod',
-            '.git'
-          )
-		      return root_pattern(filename) or nvim_lsp.util.dirname(filename)
-        end;
+  },
+  root_dir = function(fname)
+      local nvim_lsp = require'lspconfig';
+      local filename = nvim_lsp.util.path.is_absolute(fname) and fname
+        or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
+      local root_pattern = nvim_lsp.util.root_pattern(
+        'go.mod',
+        '.git'
+      )
+      return root_pattern(filename) or nvim_lsp.util.dirname(filename)
+    end;
 }
 
 nvim_lsp.clangd.setup{
-    handlers = lsp_status.extensions.clangd.setup(),
-    capabilities = capabilities,
-    cmd = { "clangd", "--background-index" },
-    filetypes = { "c", "cpp", "objc", "objcpp" },
-    root_dir = function(fname)
-        local nvim_lsp = require'lspconfig';
-		      local filename = nvim_lsp.util.path.is_absolute(fname) and fname
-            or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
-		      local root_pattern = nvim_lsp.util.root_pattern(
-            'compile_commands.json',
-            'compile_flags.txt',
-            '.git'
-          )
-		      return root_pattern(filename) or nvim_lsp.util.dirname(filename)
-        end;
+  handlers = lsp_status.extensions.clangd.setup(),
+  capabilities = capabilities,
+  cmd = { "clangd", "--background-index" },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  root_dir = function(fname)
+      local nvim_lsp = require'lspconfig';
+      local filename = nvim_lsp.util.path.is_absolute(fname) and fname
+        or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
+      local root_pattern = nvim_lsp.util.root_pattern(
+        'compile_commands.json',
+        'compile_flags.txt',
+        '.git'
+      )
+      return root_pattern(filename) or nvim_lsp.util.dirname(filename)
+    end;
 
 
-    --root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git")
+    -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git")
 }
 
 nvim_lsp.pylsp.setup{
-    capabilities = capabilities,
-    cmd = {'pylsp'},
-    settings = {
-        pylsp = {
-            configurationSources = { "mypy" },
-            plugins = {
-                jedi = {
-                  extra_paths = { io.popen("python -c \"import sys; print(next((p for p in sys.path if 'site-packages' in p), ''))\"", "r"):read() },
-                },
-		        -- pyls_mypy = { enabled = true, live_mode = true },
-            },
-            pydocstyle = {
-                enabled = true,
-            },
-        }
-    },
-    root_dir = function(fname)
-        local nvim_lsp = require'lspconfig';
-		local filename = nvim_lsp.util.path.is_absolute(fname) and fname
-			or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
-		local root_pattern = nvim_lsp.util.root_pattern(
-      'pyproject.toml',
-      'setup.py',
-      'setup.cfg',
-      'requirements.txt',
-      'mypy.ini',
-      '.pylintrc',
-      '.flake8rc',
-      '.git',
-      '.gitignore'
-    )
-		return root_pattern(filename) or nvim_lsp.util.dirname(filename)
-	end;
+  capabilities = capabilities,
+  cmd = {'pylsp'},
+  settings = {
+    pylsp = {
+      configurationSources = { "mypy" },
+      plugins = {
+        jedi = {
+          extra_paths = { io.popen("python -c \"import sys; print(next((p for p in sys.path if 'site-packages' in p), ''))\"", "r"):read() },
+        },
+        -- pyls_mypy = {
+        --   enabled = true,
+        --   live_mode = true,
+        -- },
+      },
+      pydocstyle = {
+        enabled = true,
+      },
+    }
+  },
+  root_dir = function(fname)
+      local nvim_lsp = require'lspconfig';
+      local filename = nvim_lsp.util.path.is_absolute(fname) and fname
+        or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
+      local root_pattern = nvim_lsp.util.root_pattern(
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'mypy.ini',
+        '.pylintrc',
+        '.flake8rc',
+        '.git',
+        '.gitignore'
+      )
+      return root_pattern(filename) or nvim_lsp.util.dirname(filename)
+    end;
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
