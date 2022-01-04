@@ -1,13 +1,5 @@
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+unset LSCOLORS
 LOCAL_BIN=/usr/local/bin
-
-plugins=(
-    git
-    docker
-    docker-compose
-    kubectl
-    cargo
-)
 
 ### shell
 # prompt
@@ -15,7 +7,8 @@ plugins=(
 
 # tools
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-[ -f $HOME/.func_tools.sh ] && source $HOME/.func_tools.sh
+[ -f $HOME/.tools.sh ] && source $HOME/.tools.sh
+[ -f $HOME/.tools.zsh ] && [ $SHELL = "/bin/zsh" ] && source $HOME/.tools.zsh
 
 # aliases
 alias ll="ls -laGh"
@@ -38,7 +31,15 @@ alias ll="ls -laGh"
 # brew
 [ -f "$LOCAL_BIN/brew" ] && export HOMEBREW_NO_AUTO_UPDATE=1
 
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
 # gpg
 export GPG_TTY=$(tty)
+#unset SSH_AGENT_PID
+#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#fi
 
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+#export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+#export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"

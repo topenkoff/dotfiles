@@ -22,7 +22,7 @@ font:
     y: 1
 
 schemes:
-  edge_dark_aura:  &edge_dark_aura
+  edge_dark:  &edge_dark
     primary:
       background: "0x2c2e34"
       foreground: "0xc5cdd9"
@@ -51,11 +51,10 @@ schemes:
       cursor:     "0xc5cdd9"
       text:       "0x2c2e34"
 
-
-colors: *edge_dark_aura
+colors: *edge_dark
 
 cursor:
-  style: Beam
+  style: Block
 
 shell:
   program: /bin/zsh

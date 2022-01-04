@@ -3,7 +3,6 @@ function! PackagerInit() abort
   call packager#init()
   call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })              " Package manager
   call packager#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})        " Syntax parser and highliter
-  call packager#add('mhartington/oceanic-next')                                    " Oceanic Theme
   call packager#add('sainnhe/edge')                                                " Edge theme
   call packager#add('neovim/nvim-lspconfig')                                       " LSP configuration defaults
   call packager#add('nvim-lua/lsp_extensions.nvim')                                " LSP extensions

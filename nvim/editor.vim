@@ -19,6 +19,7 @@ let g:myLangList = ['nospell', 'en_us,ru_yo']
 set cursorline
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
 " Clipboard

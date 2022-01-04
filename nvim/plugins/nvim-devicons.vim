@@ -1,25 +1,31 @@
 :lua << EOF
 require'nvim-web-devicons'.setup {
  override = {
-  ["py"] = {
+  py = {
     icon = "",
     color = "#3572A5",
-    cterm_color = "61",
-    name = "Py",
+    name = "py",
   },
-  ["lock"] = {
+  lock = {
     icon = "",
     color = "#596c72",
-    cterm_color = "66",
-    name = "Lock",
+    name = "lock",
   },
-  ["dockerfile"] = {
+  Dockerfile = {
     icon = "",
     color = "#4965AB",
-    cterm_color = "59",
     name = "Dockerfile",
   },
- };
- default = true;
+  yml = {
+    icon = "",
+    color = "#1489E9",
+    name = "yml",
+  },
+  yaml = {
+    icon = "",
+    color = "#1489E9",
+    name = "yaml",
+  },
+ },
 }
 EOF
