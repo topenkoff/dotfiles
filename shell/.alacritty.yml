@@ -155,6 +155,7 @@ key_bindings:
   - { key: Key0,     mods: Command,             chars: "\x06\x30"    }
   - { key: Minus,    mods: Command,             chars: "\x06\x2d"    }
   - { key: Equals,   mods: Command,             chars: "\x06\x3d"    }
+  - { key: Equals,   mods: Shift|Command,       chars: "\x06\x2b"    }
 # Select pane
   - { key: H,        mods: Command,             chars: "\x06\x68"    }
   - { key: J,        mods: Command,             chars: "\x06\x6a"    }
