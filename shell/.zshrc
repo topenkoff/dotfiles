@@ -12,11 +12,17 @@ LOCAL_BIN=/usr/local/bin
 
 # aliases
 alias ll="ls -laGh"
+alias l="ls -laGh"
+alias ..="cd .."
+alias venv="source .venv/bin/activate"
+alias afk="pmset displaysleepnow"
+alias ttl="sudo sysclt -w net.inet.ip.ttl=65"
 
 ### dev
 # python
 [ -d "$HOME/.pyenv" ] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init --path)"
-[ -d "$HOME/.poetry" ] && export PATH="$HOME/.poetry/bin:$PATH" && export POETRY_VIRTUALENVS_IN_PROJECT=true
+[ -d "$HOME/.poetry" ] && export PATH="$HOME/.poetry/bin:$PATH"
+export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # rust
 [ -d "$HOME/.cargo" ] && export PATH="$HOME/.cargo/bin:$PATH"
