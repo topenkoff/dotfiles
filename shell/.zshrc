@@ -16,7 +16,7 @@ alias l="ls -laGh"
 alias ..="cd .."
 alias venv="source .venv/bin/activate"
 alias afk="pmset displaysleepnow"
-alias ttl="sudo sysclt -w net.inet.ip.ttl=65"
+alias ttl="sudo sysctl -w net.inet.ip.ttl=65"
 
 ### dev
 # python

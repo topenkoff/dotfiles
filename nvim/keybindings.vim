@@ -1,10 +1,10 @@
-map <F3> :LuaTreeToggle<CR>
 map <F2> :Vista!!<CR>
 map <F7> :<C-U>call MySpellLang()<CR>
 nnoremap <C-p> :NvimTreeToggle<Cr>
 nnoremap <C-[> :NvimTreeRefresh<Cr>
 "
 nnoremap <leader>q :bp<cr>:bd #<cr>
+nnoremap <leader>Q :CloseHiddenBuffers<Cr>
 set pastetoggle=<F5>
 nnoremap <leader># :noh <CR>
 
