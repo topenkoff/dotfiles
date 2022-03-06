@@ -59,9 +59,9 @@ cursor:
 shell:
   program: /bin/zsh
   args:
-    - -l
-    - -c
-    - tmux new -As alacritty
+    - "-l"
+    - "-c"
+    - "tmux new -As alacritty"
 
 key_bindings:
 # Base binds
@@ -167,7 +167,7 @@ key_bindings:
   - { key: K,        mods: Alt|Command,         chars: "\x06\x4b"    }
   - { key: L,        mods: Alt|Command,         chars: "\x06\x4c"    }
 
-  - { key: J,        mods: Shift|Command,       chars: "\x1b[B"      }
-  - { key: K,        mods: Shift|Command,       chars: "\x1b[A"      }
+#  - { key: J,        mods: Shift|Command,       chars: "\x1b[B"      }
+#  - { key: K,        mods: Shift|Command,       chars: "\x1b[A"      }
   - { key: LBracket, mods: Command,             chars: "\x06\x5b"    }
   - { key: 3,        mods: Shift|Alt,           chars: "\xe2\x80\xb9"}
