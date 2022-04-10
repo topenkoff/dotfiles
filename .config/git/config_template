@@ -1,0 +1,19 @@
+[user]
+	name = Denis Kayshev
+	email = topenkoff@gmail.com
+[core]
+	commentChar = @
+	excludesfile = ./gitignore_global
+	editor = vim
+[alias]
+    st = status -sb
+    rs = restore
+    rss = restore --staged
+    diffc = diff --cached
+    uncommit = reset --soft HEAD^
+    purge = !git restore --staged . && git restore .
+    tree = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%h%C(reset) - %C(bold red)(%ar)%C(reset) %C(white)%s%C(reset) %C(blue)- %an%C(reset)%C(auto)%d%C(reset)' --all
+    stashed = !git --no-pager stash list --pretty=format:'%C(red)%h%C(reset) - %C(reset)(%C(bold blue)%gd%C(reset)) %<(70,trunc)%s %C(green)(%cr)'
+    br = "!f() { local refs; case $1 in all) refs='refs/heads/ refs/remotes/' ;; remote) refs='refs/remotes/' ;; local) refs='refs/heads/' ;; *) refs='refs/heads/' ;; esac; git for-each-ref --sort=-committerdate ${refs} --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'; }; f"
+    ls = !git --no-pager log -n 10 --format='%C(yellow)%h%C(reset) %C(red)%ad% %C(reset) %C(blue)%<(15,trunc)%an%C(reset) %s %C(auto)%d%C(reset)' --date=format:'%Y-%m-%d %H-%M'
+    ll = !git log --format='%C(yellow)%h%C(reset) %C(red)%ad% %C(reset) %C(blue)%<(15,trunc)%an%C(reset) %s %C(auto)%d%C(reset)' --date=format:'%Y-%m-%d %H-%M'

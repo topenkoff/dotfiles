@@ -1,2 +1,2 @@
-.gitconfig
-nvim/pack
+.config/git/config
+.config/nvim/pack
