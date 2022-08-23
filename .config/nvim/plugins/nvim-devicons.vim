@@ -26,6 +26,15 @@ require'nvim-web-devicons'.setup {
     color = "#1489E9",
     name = "yaml",
   },
+  proto = {
+    icon = "",
+    color = "#cccc00",
+    name = "proto" 
+  },
+  Makefile = {
+    icon = "",
+    name = "Makefile" 
+  },
  },
 }
 EOF

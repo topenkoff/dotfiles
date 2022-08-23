@@ -6,6 +6,7 @@ colorscheme edge
 let g:edge_style = 'aura'
 let g:edge_better_performance = !has("win32")
 let g:edge_diagnostic_line_highlight = 1
+let g:git_messenger_always_into_popup = 1
 
 " " Oceanic-next settings
 " colorscheme OceanicNext

@@ -22,3 +22,35 @@ function! s:CloseHiddenBuffers()
   endfor
 endfunction
 
+:lua << EOF
+  local function handler(_, result)
+    if result == nil then
+      vim.api.nvim_out_write("No macro under cursor!\n")
+      return
+    end
+
+    local contents = {}
+
+    local name = result.name
+    local text = "// Recursive expansion of the `" .. name .. "` macro"
+    table.insert(contents, text)
+    table.insert(contents, "")
+
+    local expansion = result.expansion
+    for string in string.gmatch(expansion, "([^\n]+)") do
+      table.insert(contents, string)
+    end
+
+    vim.lsp.util.open_floating_preview(contents, "rust")
+  end
+
+  function expandMacro()
+    local params = vim.lsp.util.make_position_params()
+    return vim.lsp.buf_request(0, "rust-analyzer/expandMacro", params, handler)
+  end
+EOF
+
+command! RAExpandMacro call s:RAExpandMacro()
+function! s:RAExpandMacro()
+  :lua expandMacro()
+endfunction
