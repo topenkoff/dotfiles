@@ -1,0 +1,29 @@
+# Python virtualenvs
+**.venv/
+**.python-version
+
+# Editors' files
+**.vscode/
+**.idea/
+
+# MacOS
+**.DS_Store/
+*.log
+**.logs
+**logs/
+*.rs.bk
+
+# Rust
+**/target*
+**/*.rs.bk
+
+# Develop files
+coverage/
+*develop.*
+*.local.*
+*local/
+*.patch
+reports/
+*.dev.*
+.pytest_cache/
+*.svg

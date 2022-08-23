@@ -3,7 +3,7 @@
 	email = topenkoff@gmail.com
 [core]
 	commentChar = @
-	excludesfile = ./gitignore_global
+	excludesfile = ./config/git/ignore
 	editor = vim
 [alias]
     st = status -sb
@@ -17,3 +17,4 @@
     br = "!f() { local refs; case $1 in all) refs='refs/heads/ refs/remotes/' ;; remote) refs='refs/remotes/' ;; local) refs='refs/heads/' ;; *) refs='refs/heads/' ;; esac; git for-each-ref --sort=-committerdate ${refs} --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'; }; f"
     ls = !git --no-pager log -n 10 --format='%C(yellow)%h%C(reset) %C(red)%ad% %C(reset) %C(blue)%<(15,trunc)%an%C(reset) %s %C(auto)%d%C(reset)' --date=format:'%Y-%m-%d %H-%M'
     ll = !git log --format='%C(yellow)%h%C(reset) %C(red)%ad% %C(reset) %C(blue)%<(15,trunc)%an%C(reset) %s %C(auto)%d%C(reset)' --date=format:'%Y-%m-%d %H-%M'
+    tags = !git for-each-ref --count=10 --sort='-*authordate' --format='%(color:yellow)%(objectname:short)%(color:reset) / %(color:green)%(refname:short)%(color:reset) - %(*subject) %0a%(color:red)%(*authordate:short)%(color:reset) %(color:blue)%(*authorname) %(*authoremail)%(color:reset)%0a' 'refs/tags'
