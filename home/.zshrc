@@ -39,6 +39,10 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
+# GNU utils
+[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ] && export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+[ -d "/usr/local/opt/coreutils/libexec/gnubin/bin" ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin/bin:$PATH"
+
 # gpg
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
