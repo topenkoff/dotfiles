@@ -59,9 +59,9 @@ cursor:
 shell:
   program: /bin/zsh
   args:
-    - "-l"
-    - "-c"
-    - "tmux new -As alacritty"
+    - -l
+    - -c
+    - tmux new -As "$(tmux ls | awk 'END{print FNR}')"
 
 key_bindings:
 # Base binds
