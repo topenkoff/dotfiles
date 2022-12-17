@@ -1,6 +1,8 @@
 [user]
     name = Denis Kayshev
     email = topenkoff@gmail.com
+[include]
+    path = ~/.config/git/config.local
 [core]
     commentChar = @
     excludesFile = ~/.config/git/ignore
