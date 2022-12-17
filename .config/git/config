@@ -1,10 +1,10 @@
 [user]
-	name = Denis Kayshev
-	email = topenkoff@gmail.com
+    name = Denis Kayshev
+    email = topenkoff@gmail.com
 [core]
-	commentChar = @
-	excludesfile = ./config/git/ignore
-	editor = vim
+    commentChar = @
+    excludesFile = ~/.config/git/ignore
+    editor = vim
 [alias]
     st = status -sb
     rs = restore
