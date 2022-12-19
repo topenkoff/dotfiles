@@ -1,0 +1,65 @@
+env:
+  TERM: screen-256color
+  #TERM: xterm-256color
+
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+  padding:
+    x: 2
+    y: 0
+  dynamic_padding: false
+  decorations: buttonless
+  startup_mode: Maximized
+
+font:
+  normal:
+    family: "DroidSansMono Nerd Font"
+    style: "Book"
+  size: 12
+  glyph_offset:
+    x: 0
+    y: 1
+
+schemes:
+  edge_dark:  &edge_dark
+    primary:
+      background: "0x2c2e34"
+      foreground: "0xc5cdd9"
+
+    normal:
+      black:      "0x363944"
+      red:        "0xec7279"
+      green:      "0xa0c980"
+      yellow:     "0xdeb974"
+      blue:       "0x6cb6eb"
+      magenta:    "0xd38aea"
+      cyan:       "0x5dbbc1"
+      white:      "0xc5cdd9"
+
+    bright:
+      black:      "0x363a49"
+      red:        "0xec7279"
+      green:      "0xa0c980"
+      yellow:     "0xdeb974"
+      blue:       "0x6cb6eb"
+      magenta:    "0xd38aea"
+      cyan:       "0x5dbbc1"
+      white:      "0xc5cdd9"
+
+    cursor:
+      cursor:     "0xc5cdd9"
+      text:       "0x2c2e34"
+
+colors: *edge_dark
+
+cursor:
+  style: Block
+
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - tmux new -As "$(tmux ls | awk 'END{print FNR}')"
