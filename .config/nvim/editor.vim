@@ -14,6 +14,7 @@ set signcolumn=yes
 " Language
 let g:myLang = 0
 let g:myLangList = ['nospell', 'en_us,ru_yo']
+let g:git_messenger_always_into_popup = 1
 
 " Show current cursor line
 set cursorline

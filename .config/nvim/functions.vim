@@ -7,7 +7,7 @@ function! MySpellLang()
   if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
 endfunction
 
-command! CloseHiddenBuffers call s:CloseHiddenBuffers()
+" CloseHiddenBuffers: {{{
 function! s:CloseHiddenBuffers()
   let open_buffers = []
 
@@ -22,6 +22,10 @@ function! s:CloseHiddenBuffers()
   endfor
 endfunction
 
+command! CloseHiddenBuffers call s:CloseHiddenBuffers()
+" }}}
+
+" rust-analyzer/expandMacro: {{{
 :lua << EOF
   local function handler(_, result)
     if result == nil then
@@ -54,3 +58,6 @@ command! RAExpandMacro call s:RAExpandMacro()
 function! s:RAExpandMacro()
   :lua expandMacro()
 endfunction
+" }}}
+
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

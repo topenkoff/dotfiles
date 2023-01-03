@@ -1,12 +1,10 @@
 local nvim_lsp = require'lspconfig'
 local lsp_status = require('lsp-status')
-local cmp = require'cmp'
+local cmp = require('cmp')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lsp_status.register_progress()
-
-local capabilities = lsp_status.capabilities
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
+-- cmp setup: {{{
+-- icons: {{{
 local kind_icons = {
   Text = "",
   Method = "",
@@ -34,6 +32,7 @@ local kind_icons = {
   Operator = "",
   TypeParameter = ""
 }
+-- }}}
 
 cmp.setup({
   sources = {
@@ -61,23 +60,25 @@ cmp.setup({
     completeopt = 'noinsert,menuone,noselect'
   },
   mapping = {
-    ['<S-k>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<S-j>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable,
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true
-    }),
-    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+     ['<S-k>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+     ['<S-j>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+  --   ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+  --   ['<C-y>'] = cmp.config.disable,
+  --   ['<C-e>'] = cmp.mapping({
+  --     i = cmp.mapping.abort(),
+  --     c = cmp.mapping.close(),
+  --   }),
+     ['<CR>'] = cmp.mapping.confirm({
+       behavior = cmp.ConfirmBehavior.Insert,
+       select = true
+     }),
+     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+     ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
   },
 })
+-- }}}
 
+-- rust: {{{
 nvim_lsp.rust_analyzer.setup{
   capabilities = capabilities,
   settings = {
@@ -92,7 +93,9 @@ nvim_lsp.rust_analyzer.setup{
     },
   }
 }
+-- }}}
 
+-- golang: {{{
 nvim_lsp.gopls.setup{
   capabilities = capabilities,
   cmd = {"gopls", "serve"},
@@ -116,7 +119,9 @@ nvim_lsp.gopls.setup{
       return root_pattern(filename) or nvim_lsp.util.dirname(filename)
     end;
 }
+-- }}}
 
+-- c: {{{
 nvim_lsp.clangd.setup{
   handlers = lsp_status.extensions.clangd.setup(),
   capabilities = capabilities,
@@ -137,7 +142,9 @@ nvim_lsp.clangd.setup{
 
     -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git")
 }
+-- }}}
 
+-- python: {{{
 nvim_lsp.pylsp.setup{
   capabilities = capabilities,
   cmd = {'pylsp'},
@@ -176,7 +183,9 @@ nvim_lsp.pylsp.setup{
       return root_pattern(filename) or nvim_lsp.util.dirname(filename)
     end;
 }
+-- }}}
 
+-- after: {{{
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
@@ -185,3 +194,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     virtual_text = true,
   }
 )
+-- }}}
+
+-- vim: set sw=2 ts=2 sts=2 et tw=80 ft=lua fdm=marker fmr={{{,}}}:
