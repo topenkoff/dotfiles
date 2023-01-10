@@ -1,5 +1,4 @@
-unset LSCOLORS
-LOCAL_BIN=/usr/local/bin
+LOCAL_BIN="/usr/local/bin"
 
 ### shell
 # prompt
@@ -20,16 +19,14 @@ alias ttl="sudo sysctl -w net.inet.ip.ttl=65"
 
 ### dev
 # python
-[ -d "$HOME/.pyenv" ] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init --path)"
+[ -d "$HOME/.pyenv" ] \
+    && export PATH="$HOME/.pyenv/bin:$PATH" \
+    && eval "$(pyenv init --path)"
 [ -d "$HOME/.poetry" ] && export PATH="$HOME/.poetry/bin:$PATH"
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # rust
 [ -d "$HOME/.cargo" ] && export PATH="$HOME/.cargo/bin:$PATH"
-
-# golang
-[ -d "$HOME/.go" ] && export GOPATH="$HOME/.go"
-[ -d "$HOME/.go/bin" ] && export PATH="$GOPATH/bin:$PATH"
 
 # k8s
 [ -d "$LOCAL_BIN/kubectl" ] && export KUBECONFIG="$HOME/.kube/kubeconfig"
@@ -40,8 +37,10 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # GNU utils
-[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ] && export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-[ -d "/usr/local/opt/coreutils/libexec/gnubin/bin" ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin/bin:$PATH"
+[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ] \
+    && export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+[ -d "/usr/local/opt/coreutils/libexec/gnubin/bin" ] \
+    && export PATH="/usr/local/opt/coreutils/libexec/gnubin/bin:$PATH"
 
 # gpg
 unset SSH_AGENT_PID
@@ -50,6 +49,8 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 fi
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
+
+[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
 #export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"

@@ -4,7 +4,9 @@
 !README.md
 !setup.sh
 
-!home
+!home/
+!home/*
+home/.zshrc.local
 
 !.config/
 .config/*
