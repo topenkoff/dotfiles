@@ -69,8 +69,4 @@ nnoremap <silent> P           <cmd>lua vim.diagnostic.open_float()<CR>
 nnoremap <silent> {           <cmd>lua vim.diagnostic.goto_next()<CR>
 nnoremap <silent> }           <cmd>lua vim.diagnostic.goto_prev()<CR>
 
-" Inline type hints
-nnoremap <leader> t           <cmd>lua require'lsp_extensions'.inlay_hints()<CR>
-nnoremap <leader> h           <cmd>lua require'lsp_extensions'.inlay_hints{ only_current_line = true }<CR>
-nnoremap <leader> H           <cmd>call ToggleInlayHints(1)<CR>
-nnoremap <silent> <leader> me  <cmd>:RAExpandMacro<CR>
+nnoremap <silent> <leader> me <cmd>:RAExpandMacro<CR>

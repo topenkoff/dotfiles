@@ -13,9 +13,6 @@ function! PackagerInit() abort
 
   " LSP
   call packager#add('neovim/nvim-lspconfig')                                      " LSP configuration defaults
-  "remove(archived), but first add the inline function based on rust-analyzer/inlayHints
-  call packager#add('nvim-lua/lsp_extensions.nvim')                               " LSP extensions
-
   call packager#add('nvim-lua/lsp-status.nvim')                                   " LSP Statusline info
   call packager#add('hrsh7th/nvim-cmp')                                           " LSP completion
   call packager#add('hrsh7th/vim-vsnip')                                          " Snippet plugin for LSP
