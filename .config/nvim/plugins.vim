@@ -6,6 +6,7 @@ function! PackagerInit() abort
   " Editor and theme
   call packager#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})       " Syntax parser and highliter
   call packager#add('sainnhe/edge')                                               " Edge theme
+
   call packager#add('vim-airline/vim-airline')                                    " Statusline
   call packager#add('kyazdani42/nvim-tree.lua')                                   " File explorer
   call packager#add('kyazdani42/nvim-web-devicons')                               " Neovim Icons
@@ -36,7 +37,6 @@ function! PackagerInit() abort
   " Language
   call packager#add('ekalinin/Dockerfile.vim')                                    " Dockerfile helper
   call packager#add('saecki/crates.nvim', {'requires': 'nvim-lua/plenary.nvim'})  " crates.io helper
-  call packager#add('rust-lang/rust.vim')                                         " cmp source rust
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()

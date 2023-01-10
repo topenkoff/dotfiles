@@ -1,15 +1,11 @@
-set termguicolors
 syntax on
 
-colorscheme edge
-" set background=dark
-let g:edge_style = 'aura'
-let g:edge_better_performance = !has("win32")
-let g:edge_diagnostic_line_highlight = 1
-let g:git_messenger_always_into_popup = 1
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
-" " Oceanic-next settings
-" colorscheme OceanicNext
-" set background=dark
-" let g:oceanic_next_highlight_current_line = 1
-" hi! CursorLine ctermbg=236 ctermfg=NONE guibg=#15262F
+let g:airline_theme = 'edge'
+
+colorscheme edge
