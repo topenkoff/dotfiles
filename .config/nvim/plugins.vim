@@ -10,6 +10,7 @@ function! PackagerInit() abort
   call packager#add('vim-airline/vim-airline')                                    " Statusline
   call packager#add('kyazdani42/nvim-tree.lua')                                   " File explorer
   call packager#add('kyazdani42/nvim-web-devicons')                               " Neovim Icons
+  call packager#add('vim-scripts/vcscommand.vim')                                 " Git extension to statusline
 
   " LSP
   call packager#add('neovim/nvim-lspconfig')                                      " LSP configuration defaults
