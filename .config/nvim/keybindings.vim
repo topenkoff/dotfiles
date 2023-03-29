@@ -9,11 +9,6 @@ nnoremap <leader>Q <cr>:CloseHiddenBuffers <cr>
 set pastetoggle=<F5>
 nnoremap <leader># <cmd>noh <CR>
 
-nnoremap <C-A-k> 5k <CR>
-nnoremap <C-A-j> 5j <CR>
-inoremap <C-A-j><Esc> 5j <CR>
-inoremap <C-A-k><Esc> 5k <CR>
-
 "nnoremap <A-Left> :tabp<CR>
 "nnoremap <A-Right> :tabn<CR>
 "inoremap <A-Left> <Esc>:tabp<CR>
