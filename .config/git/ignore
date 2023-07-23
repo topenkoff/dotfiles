@@ -1,6 +1,7 @@
 # Python virtualenvs
 **.venv/
 **.python-version
+**.pytest_cache/
 
 # Editors' files
 **.vscode/
@@ -11,11 +12,10 @@
 *.log
 **.logs
 **logs/
-*.rs.bk
+*.bk
 
 # Rust
 **/target*
-**/*.rs.bk
 
 # Develop files
 coverage/
@@ -25,5 +25,3 @@ coverage/
 *.patch
 reports/
 *.dev.*
-.pytest_cache/
-*.svg
