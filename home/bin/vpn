@@ -1,0 +1,22 @@
+#!/bin/bash
+
+_vpn_up() {
+    echo "up"
+}
+
+_vpn_down() {
+    echo "down"
+}
+
+_vpn_status() {
+    echo "status"
+}
+
+action=$1;shift
+
+case $action in
+    up)     _vpn_up ;;
+    down)   _vpn_down ;;
+    status) _vpn_status ;;
+    *)      err 'Unknown command "'${action}'"' ;;
+esac

@@ -12,6 +12,8 @@ home/.zshrc.local
 !home/.gnupg/gpg-agent.conf
 home/.gnupg/*
 
+!home/bin/*
+
 !.config/
 .config/*
 

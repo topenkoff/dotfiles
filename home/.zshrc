@@ -68,9 +68,8 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 #export LDFLAGS="-L/usr/local/opt/bzip2/lib"
 #export CPPFLAGS="-I/usr/local/opt/zlib/include"
 #export CPPFLAGS="-I/usr/local/opt/bzip2/include"
-#
-export PATH="$HOME/.bin:$PATH"
 
+export PATH="$HOME/bin:$PATH"
 
 source_if "$HOME/.zshrc.local"
 
