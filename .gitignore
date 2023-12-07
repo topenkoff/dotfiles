@@ -8,6 +8,10 @@
 !home/*
 home/.zshrc.local
 
+!home/.gnupg/gpg.conf
+!home/.gnupg/gpg-agent.conf
+home/.gnupg/*
+
 !.config/
 .config/*
 
