@@ -1,0 +1,28 @@
+#!/bin/bash
+
+err() {
+    echo -e "\033[31m$1\033[0m" >&2
+    exit 1
+}
+
+local project=${1}
+local env=${2}
+local replica=${3}
+
+credentials=$(pass db/postgres/${project}/${env}/${replica})
+if [[ -z $credentials ]]; then
+    err "No credentials"
+fi
+
+while IFS= read -r line
+do
+  name=${line%%=*}
+  value=${line##*=}
+  declare pg_${name}="${value}"
+done <<< $credentials
+
+PGPASSWORD=$pg_password psql \
+  --host=$pg_host \
+  --port=$pg_port \
+  --username=$pg_username \
+  --dbname=$pg_dbname
