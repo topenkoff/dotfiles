@@ -73,3 +73,4 @@ export PATH="$HOME/.bin:$PATH"
 
 
 source_if "$HOME/.zshrc.local"
+
