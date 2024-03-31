@@ -14,15 +14,15 @@ window:
 
 font:
   normal:
-    family: "DroidSansMono Nerd Font"
-    style: "Book"
-  size: 12
+    family: "DroidSansM Nerd Font"
+    style: "Regular"
+  size: 13
   glyph_offset:
     x: 0
     y: 1
 
 schemes:
-  edge_dark:  &edge_dark
+  edge_dark: &edge_dark
     primary:
       background: "0x2c2e34"
       foreground: "0xc5cdd9"
@@ -62,3 +62,7 @@ shell:
     - -l
     - -c
     - tmux new -As "$(tmux ls | awk 'END{print FNR}')"
+
+#  cd ~/Library/Fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFontMono-Regular.ttf
+#  https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf
+#  https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFontMono-Regular.ttf
