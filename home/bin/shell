@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+clippy() {
+    shellcheck -s bash "${1}"
+}
+
+fmt() {
+    shfmt -ln=bash -i=4 -w "${1}"
+}
+
+main() {
+    command="${1}"; shift
+    case "${command}" in
+        fmt) fmt "$@" ;;
+        clippy) clippy "$@";;
+        *) echo "Unknown command"; exit 1 ;;
+    esac
+}
+
+main "$@"
