@@ -1,1 +1,3 @@
-lua require('plugins.nvim-cmp')
+:lua << EOF
+require('plugins.nvim-cmp')
+EOF

@@ -1,4 +1,4 @@
-local nvim_lsp = require'lspconfig'
+local nvim_lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
 local cmp = require('cmp')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -7,30 +7,32 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- icons: {{{
 local kind_icons = {
   Text = "",
-  Method = "",
-  Function = "",
+  Method = "󰆧",
+  Function = "󰊕",
   Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
+  Field = "󰇽",
+  Variable = "󰂡",
+  Class = "󰠱",
   Interface = "",
   Module = "",
-  Property = "ﰠ",
+  Property = "󰜢",
   Unit = "",
-  Value = "",
+  Value = "󰎠",
   Enum = "",
-  Keyword = "",
+  Keyword = "󰌋",
   Snippet = "",
-  Color = "",
-  File = "",
+  Color = "󰏘",
+  File = "󰈙",
   Reference = "",
-  Folder = "",
+  Folder = "󰉋",
   EnumMember = "",
-  Constant = "",
+  Constant = "󰏿",
   Struct = "",
   Event = "",
-  Operator = "",
-  TypeParameter = ""
+  Operator = "󰆕",
+  TypeParameter = "󰅲",
+  Version = "",
+  Feature = "",
 }
 -- }}}
 
@@ -98,22 +100,23 @@ nvim_lsp.rust_analyzer.setup{
 -- golang: {{{
 nvim_lsp.gopls.setup{
   capabilities = capabilities,
-  cmd = {"gopls", "serve"},
-  filetypes = { "go", "gomod" },
+  -- cmd = {"gopls", "serve"},
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
   settings = {
     gopls = {
       analyses = {
         unusedparams = true,
       },
       staticcheck = true,
+      gofumpt = true,
     },
   },
   root_dir = function(fname)
-      local nvim_lsp = require'lspconfig';
       local filename = nvim_lsp.util.path.is_absolute(fname) and fname
         or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
       local root_pattern = nvim_lsp.util.root_pattern(
         'go.mod',
+        'go.sum',
         '.git'
       )
       return root_pattern(filename) or nvim_lsp.util.dirname(filename)
@@ -126,7 +129,7 @@ nvim_lsp.clangd.setup{
   handlers = lsp_status.extensions.clangd.setup(),
   capabilities = capabilities,
   cmd = { "clangd", "--background-index" },
-  filetypes = { "c", "cpp", "objc", "objcpp" },
+  filetypes = { "c", "h", "cpp", "hpp" },
   root_dir = function(fname)
       local nvim_lsp = require'lspconfig';
       local filename = nvim_lsp.util.path.is_absolute(fname) and fname
@@ -153,7 +156,7 @@ nvim_lsp.pylsp.setup{
       configurationSources = { "mypy" },
       plugins = {
         jedi = {
-          extra_paths = { io.popen("python -c \"import sys; print(next((p for p in sys.path if 'site-packages' in p), ''))\"", "r"):read() },
+          extra_paths = { io.popen("python -c \"import os; import glob; base = os.path.join(os.getcwd(), '.venv'); env = next(iter(glob.glob('.venv/lib/*/site-packages')), None); print(os.path.join(os.getcwd(), env) if base and env is not None else '')\"", "r"):read() },
         },
         -- pyls_mypy = {
         --   enabled = true,
@@ -174,7 +177,6 @@ nvim_lsp.pylsp.setup{
         'setup.py',
         'setup.cfg',
         'requirements.txt',
-        'mypy.ini',
         '.pylintrc',
         '.flake8rc',
         '.git',

@@ -3,7 +3,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     "c",
     "go",
--- "rust",
+    "rust",
     "python",
   },
   auto_install = false,
@@ -12,7 +12,7 @@ require('nvim-treesitter.configs').setup {
     enable = false,
   },
   indent = {
-    enable = true
+    enable = true,
   }
 }
 EOF

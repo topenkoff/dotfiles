@@ -1,11 +1,12 @@
-function! MySpellLang()
-  "loop through languages
-  if g:myLang == 0 | setlocal nospell | endif
-  if g:myLang == 1 | let &l:spelllang = g:myLangList[g:myLang] | setlocal spell | endif
-  echomsg 'language:' g:myLangList[g:myLang]
-  let g:myLang = g:myLang + 1
-  if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
+" RefreshPage: {{{
+function! s:RefreshPage()
+  :NvimTreeRefresh
+  :GitGutterToggle
+  :GitGutterToggle
 endfunction
+
+command! RefreshPage call s:RefreshPage()
+" }}}
 
 " CloseHiddenBuffers: {{{
 function! s:CloseHiddenBuffers()

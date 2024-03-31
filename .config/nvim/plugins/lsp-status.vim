@@ -1,1 +1,3 @@
-lua require('plugins.lsp-status')
+:lua << EOF
+require('lsp-status')
+EOF

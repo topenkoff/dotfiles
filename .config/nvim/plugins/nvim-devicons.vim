@@ -1,5 +1,5 @@
 :lua << EOF
-require'nvim-web-devicons'.setup {
+require('nvim-web-devicons').setup {
  override = {
   py = {
     icon = "",
@@ -17,12 +17,12 @@ require'nvim-web-devicons'.setup {
     name = "Dockerfile",
   },
   yml = {
-    icon = "",
+    icon = "󰅪",
     color = "#1489E9",
     name = "yml",
   },
   yaml = {
-    icon = "",
+    icon = "󰅪",
     color = "#1489E9",
     name = "yaml",
   },
