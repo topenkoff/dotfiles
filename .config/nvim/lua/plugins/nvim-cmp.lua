@@ -95,6 +95,7 @@ nvim_lsp.rust_analyzer.setup{
     },
   }
 }
+
 -- }}}
 
 -- golang: {{{
@@ -124,14 +125,10 @@ nvim_lsp.gopls.setup{
 }
 -- }}}
 
--- c: {{{
-nvim_lsp.clangd.setup{
-  handlers = lsp_status.extensions.clangd.setup(),
+nvim_lsp.clangd.setup {
   capabilities = capabilities,
-  cmd = { "clangd", "--background-index" },
-  filetypes = { "c", "h", "cpp", "hpp" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   root_dir = function(fname)
-      local nvim_lsp = require'lspconfig';
       local filename = nvim_lsp.util.path.is_absolute(fname) and fname
         or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
       local root_pattern = nvim_lsp.util.root_pattern(
@@ -139,12 +136,10 @@ nvim_lsp.clangd.setup{
         'compile_flags.txt',
         '.git'
       )
-      return root_pattern(filename) or nvim_lsp.util.dirname(filename)
+      return root_pattern(filename) -- or nvim_lsp.util.dirname(filename)
     end;
-
-
-    -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git")
 }
+
 -- }}}
 
 -- python: {{{
@@ -153,7 +148,7 @@ nvim_lsp.pylsp.setup{
   cmd = {'pylsp'},
   settings = {
     pylsp = {
-      configurationSources = { "mypy" },
+      -- configurationSources = { "mypy" },
       plugins = {
         jedi = {
           extra_paths = { io.popen("python -c \"import os; import glob; base = os.path.join(os.getcwd(), '.venv'); env = next(iter(glob.glob('.venv/lib/*/site-packages')), None); print(os.path.join(os.getcwd(), env) if base and env is not None else '')\"", "r"):read() },
@@ -163,19 +158,18 @@ nvim_lsp.pylsp.setup{
         --   live_mode = true,
         -- },
       },
-      pydocstyle = {
-        enabled = true,
-      },
+      -- pydocstyle = {
+      --   enabled = true,
+      -- },
     }
   },
   root_dir = function(fname)
-      local nvim_lsp = require'lspconfig';
       local filename = nvim_lsp.util.path.is_absolute(fname) and fname
         or nvim_lsp.util.path.join(vim.loop.cwd(), fname)
       local root_pattern = nvim_lsp.util.root_pattern(
         'pyproject.toml',
         'setup.py',
-        'setup.cfg',
+        -- 'setup.cfg',
         'requirements.txt',
         '.pylintrc',
         '.flake8rc',
@@ -185,6 +179,10 @@ nvim_lsp.pylsp.setup{
       return root_pattern(filename) or nvim_lsp.util.dirname(filename)
     end;
 }
+-- }}}
+
+-- lua: {{{
+nvim_lsp.lua_ls.setup{}
 -- }}}
 
 -- after: {{{
