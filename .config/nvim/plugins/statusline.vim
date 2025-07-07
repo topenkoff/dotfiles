@@ -3,7 +3,7 @@ function! LspStatus() abort
   return trim(status)
 endfunction
 call airline#parts#define_function('lsp_status', 'LspStatus')
-call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
+call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.get_clients() > 0")')
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#nvimlsp#enabled = 0
