@@ -1,6 +1,6 @@
 :lua << EOF
 require('crates').setup({
-    src = {
+    completion = {
         cmp = {
             enabled = true,
         }
