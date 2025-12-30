@@ -1,7 +1,5 @@
-runtime! plugins.vim
-runtime! editor.vim
-runtime! theme.vim
-runtime! functions.vim
-runtime! keybindings.vim
+:lua << EOF
+require("config.lazy")
+EOF
 
-runtime! plugins/*.vim
+runtime! vim/*.vim
