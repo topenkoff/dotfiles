@@ -28,4 +28,4 @@ home/.gnupg/*
 
 !.config/nvim/
 !.config/nvim/*
-.config/nvim/pack
+.config/nvim/lazy
