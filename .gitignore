@@ -29,3 +29,6 @@ home/.gnupg/*
 !.config/nvim/
 !.config/nvim/*
 .config/nvim/lazy
+
+!.config/tmux/
+!.config/tmux/*
