@@ -69,4 +69,4 @@ path_if "$HOME/bin"
 path_if "$HOME/go/bin"
 
 source_if "$HOME/.zshrc.local"
-
+alias flush='clear'
