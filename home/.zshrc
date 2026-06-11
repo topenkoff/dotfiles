@@ -1,6 +1,7 @@
 setopt inc_append_history
 
 source_if() { [ -f $1 ] && source $1 1> /dev/null ; }
+path_if() { [ -d $1 ] && export PATH="$1:$PATH" ; }
 
 LOCAL_BIN="/usr/local/bin"
 
@@ -11,9 +12,6 @@ LOCAL_BIN="/usr/local/bin"
 # tools
 source_if "$HOME/.fzf.zsh"
 source_if "$(brew --prefix)/etc/bash_completion"
-
-#[ -f $HOME/.tools.sh ] && source $HOME/.tools.sh
-#[ -f $HOME/.tools.zsh ] && source $HOME/.tools.zsh
 
 # aliases
 alias ll="ls -laGh"
@@ -28,11 +26,11 @@ alias ttl="sudo sysctl -w net.inet.ip.ttl=65"
 [ -d "$HOME/.pyenv" ] \
     && export PATH="$HOME/.pyenv/bin:$PATH" \
     && eval "$(pyenv init --path)"
-[ -d "$HOME/.poetry" ] && export PATH="$HOME/.poetry/bin:$PATH"
+path_if "$HOME/.poetry/bin"
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # rust
-[ -d "$HOME/.cargo" ] && export PATH="$HOME/.cargo/bin:$PATH"
+path_if "$HOME/.cargo/bin"
 
 # k8s
 [ -d "$LOCAL_BIN/kubectl" ] && export KUBECONFIG="$HOME/.kube/kubeconfig"
@@ -45,13 +43,11 @@ if [[ -n `which brew` ]]; then
     source_if "$(brew --prefix)/etc/bash_completion"
 fi
 
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+path_if "$HOME/.local/bin"
 
 # GNU utils
-[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ] \
-    && export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-[ -d "/usr/local/opt/coreutils/libexec/gnubin/bin" ] \
-    && export PATH="/usr/local/opt/coreutils/libexec/gnubin/bin:$PATH"
+path_if "/usr/local/opt/gnu-sed/libexec/gnubin"
+path_if "/usr/local/opt/coreutils/libexec/gnubin/bin"
 
 # gpg
 #unset SSH_AGENT_PID
@@ -69,7 +65,8 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 #export CPPFLAGS="-I/usr/local/opt/zlib/include"
 #export CPPFLAGS="-I/usr/local/opt/bzip2/include"
 
-export PATH="$HOME/bin:$PATH"
+path_if "$HOME/bin"
+path_if "$HOME/go/bin"
 
 source_if "$HOME/.zshrc.local"
 

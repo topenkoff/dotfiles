@@ -19,6 +19,28 @@ return {
       })
       vim.lsp.enable('clangd')
 
+      ------------------------------------------
+      vim.lsp.config("gopls", {
+        capabilities = capabilities,
+      })
+      vim.lsp.enable("gopls")
+      ------------------------------------------
+      vim.lsp.config("pylsp",{
+          capabilities = capabilities
+      })
+      vim.lsp.enable("pylsp")
+      ------------------------------------------
+      vim.lsp.config("rust_analyzer",{
+          capabilities = capabilities
+      })
+      vim.lsp.enable("rust_analyzer")
+      ------------------------------------------
+      vim.lsp.config("lua_ls", {
+        capabilities = capabilities,
+      })
+      vim.lsp.enable("lua_ls")
+      ------------------------------------------
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "qf",
         callback = function()
