@@ -1,4 +1,16 @@
-setopt inc_append_history
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+
+setopt \
+    share_history \
+    inc_append_history \
+    extended_history \
+    hist_ignore_dups \
+    hist_ignore_all_dups \
+    hist_ignore_space \
+    hist_find_no_dups \
+    hist_reduce_blanks
 
 source_if() { [ -f $1 ] && source $1 1> /dev/null ; }
 path_if() { [ -d $1 ] && export PATH="$1:$PATH" ; }
@@ -70,3 +82,10 @@ path_if "$HOME/go/bin"
 
 source_if "$HOME/.zshrc.local"
 alias flush='clear'
+
+export VISUAL=nvim
+export EDITOR=nvim
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
