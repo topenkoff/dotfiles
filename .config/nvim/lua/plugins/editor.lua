@@ -39,6 +39,11 @@ return {
             icon = "",
             name = "Makefile"
           },
+          toml = {
+            icon = "",
+            color = "#a0a0a0",
+            name = "toml"
+          },
         }
       }
     end
