@@ -100,6 +100,10 @@ return {
     config = function() end,
   },
   {
+    "rhysd/git-messenger.vim",
+    config = function() end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     branch = "main",
