@@ -81,6 +81,8 @@ path_if "$HOME/bin"
 path_if "$HOME/go/bin"
 
 source_if "$HOME/.zshrc.local"
+path_if "/opt/homebrew/Cellar/llvm/19.1.7/bin"
+
 alias flush='clear'
 
 export VISUAL=nvim
@@ -89,3 +91,7 @@ export EDITOR=nvim
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
+
+
+autoload -Uz compinit
+compinit

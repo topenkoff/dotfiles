@@ -20,27 +20,43 @@ return {
       vim.lsp.enable('clangd')
 
       ------------------------------------------
+
       vim.lsp.config("gopls", {
         capabilities = capabilities,
       })
       vim.lsp.enable("gopls")
+
       ------------------------------------------
+
       vim.lsp.config("pylsp",{
-          capabilities = capabilities
+        capabilities = capabilities,
+        settings = {
+          pylsp = {
+            plugins = {
+              jedi = {
+                extra_paths = { io.popen("python -c \"import os; import glob; base = os.path.join(os.getcwd(), '.venv'); env = next(iter(glob.glob('.venv/lib/*/site-packages')), None); print(os.path.join(os.getcwd(), env) if base and env is not None else '')\"", "r"):read() },
+              }
+            }
+          }
+        }
       })
       vim.lsp.enable("pylsp")
+
       ------------------------------------------
+
       vim.lsp.config("rust_analyzer",{
           capabilities = capabilities
       })
       vim.lsp.enable("rust_analyzer")
+
       ------------------------------------------
+
       vim.lsp.config("lua_ls", {
         capabilities = capabilities,
       })
       vim.lsp.enable("lua_ls")
-      ------------------------------------------
 
+      ------------------------------------------
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "qf",
         callback = function()
